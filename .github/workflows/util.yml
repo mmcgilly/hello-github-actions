@@ -1,0 +1,20 @@
+name: Utility
+on:
+  workflow_dispatch:
+      inputs:
+        script:
+            description: 'Script'
+            required: true
+            type: string
+        environment:
+            description: 'Environment to run tests against'
+            type: environment
+            required: true
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute the script
+        run: |
+          ${{ inputs.script }} 
