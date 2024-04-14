@@ -1,4 +1,4 @@
-name: Secret investigation
+name: Deployment
 on:
   workflow_dispatch:
       inputs:
