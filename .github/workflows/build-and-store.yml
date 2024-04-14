@@ -1,0 +1,26 @@
+name: Build and Store
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Create Artifact
+    runs-on: ubuntu-latest
+    outputs:
+      artifactid: ${{ steps.artifact-upload-step.outputs.artifact-id }}
+
+    steps:
+      - uses: actions/upload-artifact@v4
+        id: artifact-upload-step
+        with:
+          name: build-artifact
+          path: README.md
+
+  build-check:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - env:
+         ARTIFACTID: ${{needs.build.outputs.artifactid}}
+        run: echo "Artifact ID from previous job is $ARTIFACTID"
