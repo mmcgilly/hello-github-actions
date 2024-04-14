@@ -40,7 +40,7 @@ jobs:
     steps:
     - uses: actions/download-artifact@v4
       with:
-        name: build-artifact
+        #name: build-artifact
         github-token: ${{ secrets.GH_PAT }} # token with actions:read permissions on target repo
         #repository: actions/toolkit
         run-id: ${{ inputs.run-id }} 
