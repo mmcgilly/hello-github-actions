@@ -37,7 +37,12 @@ jobs:
 
   Download-Build-Artifact:
     runs-on: ubuntu-latest
+    environment: development
     steps:
+    - name: Dump secret context
+      env:
+        SECRET_CONTEXT: ${{ toJson(secrets) }}
+      run: echo "$SECRET_CONTEXT"
     - uses: actions/download-artifact@v4
       with:
         #name: build-artifact
