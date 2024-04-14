@@ -37,7 +37,7 @@ jobs:
 
   Download-Build-Artifact:
     runs-on: ubuntu-latest
-    environment: development
+    environment: ${{ inputs.environment }} 
     steps:
     - name: Dump secret context
       env:
@@ -46,6 +46,7 @@ jobs:
     - uses: actions/download-artifact@v4
       with:
         #name: build-artifact
+        #github-token: ${{ secrets.GH_PAT }} # token with actions:read permissions on target repo
         github-token: ${{ secrets.GH_PAT }} # token with actions:read permissions on target repo
         #repository: actions/toolkit
         run-id: ${{ inputs.run-id }} 
